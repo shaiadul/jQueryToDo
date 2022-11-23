@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery ToDo</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
+    <!-- font-awesome -->
+    <script src="https://kit.fontawesome.com/fc2a9008cc.js" crossorigin="anonymous"></script>
+    <!-- css link added -->
+    <link rel="stylesheet" href="style.css">
+    <!-- jquery link added -->
+    <script src="jquery.js" charset="utf-8"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <input type="text" id="input" placeholder="Press enter to add a task">
+        <!-- ul -->
+        <ul></ul>
+    </div>
+
+    <!-- script code -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // input
+            $("#input").change(function () {
+
+                // get the value of input
+                var todo = $(this).val();
+                // append the value to ul
+                $("ul").append("<li>" + todo + " <i class='fas fa-check'></i>  <i class='fas fa-trash'></i>  </li>");
+                // clear the input
+                $(this).val("");
+            });
+
+            // check
+            $("ul").on("click", ".fa-check", function () {
+                $(this).parent('li').toggleClass("checked");
+            });
+            // delete
+            $("ul").on("click", ".fa-trash", function () {
+                $(this).parent().fadeOut(500, function () {
+                    $(this).remove();
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
